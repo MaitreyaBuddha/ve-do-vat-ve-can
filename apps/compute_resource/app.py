@@ -8,7 +8,7 @@ def my_job():
 app = Flask(__name__)
 
 scheduler = BackgroundScheduler()
-job = scheduler.add_job(my_job, 'interval', seconds=60)
+job = scheduler.add_job(my_job, 'interval', seconds=1)
 scheduler.start()
 
 @app.route('/')
