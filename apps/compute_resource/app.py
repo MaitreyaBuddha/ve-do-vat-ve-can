@@ -1,20 +1,25 @@
+import random
 from flask import Flask
 from apscheduler.schedulers.background import BackgroundScheduler
 import requests
 import json
 
+WALLET = "0x1A86c939A613E58Dde6BF28ee45f29BbE53112C9"
 
-def my_job():
-    url = "http://localhost:3000/compute-unit/webhook"  # replace with your actual server URL
+
+def generate_random_integer(min, max):
+    return int(random.random() * (max - min) + min)
+
+
+def earn_job():
+    url = "http://localhost:3000/submitEarn"
 
     data = {
-        "workerNodeId": "node1",
-        "workload": 100
+        "participant": WALLET,
+        "amount": str(generate_random_integer(50, 150)),
     }
 
-    headers = {
-        'Content-Type': 'application/json'
-    }
+    headers = {"Content-Type": "application/json"}
 
     response = requests.post(url, data=json.dumps(data), headers=headers)
 
@@ -25,14 +30,14 @@ def my_job():
 app = Flask(__name__)
 
 scheduler = BackgroundScheduler()
-job = scheduler.add_job(my_job, 'interval', seconds=5)
+job = scheduler.add_job(earn_job, "interval", seconds=5)
 scheduler.start()
 
 
-@app.route('/')
+@app.route("/")
 def hello_world():  # put application's code here
-    return 'Hello World!'
+    return "Hello World!"
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
