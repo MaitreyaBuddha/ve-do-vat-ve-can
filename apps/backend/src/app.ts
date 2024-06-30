@@ -13,6 +13,7 @@ import { Routes } from '@interfaces/routes.interface';
 import { ErrorMiddleware } from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import bodyParser from 'body-parser';
+import ComputeUnitRoute from './routes/computeUnit.route';
 
 export class App {
   public app: express.Application;
@@ -56,6 +57,7 @@ export class App {
   }
 
   private initializeRoutes(routes: Routes[]) {
+    routes.push(new ComputeUnitRoute());
     routes.forEach(route => {
       this.app.use('/', route.router);
     });
