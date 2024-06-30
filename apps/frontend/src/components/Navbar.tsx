@@ -1,4 +1,4 @@
-import { Box, Container, HStack, Image } from "@chakra-ui/react";
+import { Box, Container, HStack, Image, Text } from "@chakra-ui/react";
 import { ConnectWalletButton } from "./ConnectWalletButton";
 export const Navbar = () => {
   return (
@@ -10,6 +10,7 @@ export const Navbar = () => {
       py={4}
       h={"auto"}
       w={"full"}
+      mb={-8}
       bg={"#f7f7f7"}
     >
       <Container
@@ -21,7 +22,10 @@ export const Navbar = () => {
         maxW={"container.xl"}
       >
         <HStack flex={1} justifyContent={"start"}>
-          <Image src="/vebetterdao-logo.svg" />
+          <Image src="/vedgeai.svg" h={10} borderRadius={16} />
+          <Text fontSize={24} fontWeight={800}>
+            Vedge AI
+          </Text>
         </HStack>
 
         <HStack flex={1} spacing={4} justifyContent={"end"}>
