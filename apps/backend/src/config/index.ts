@@ -9,6 +9,6 @@ export const { MAX_FILE_SIZE } = process.env;
 export const { ADMIN_MNEMONIC, ADMIN_ADDRESS } = process.env;
 export const { NETWORK_URL, NETWORK_TYPE } = process.env;
 export const { RECAPTCHA_SECRET_KEY } = process.env;
-export const { REWARD_AMOUNT } = process.env;
+export const REWARD_AMOUNT = '0.01';
 
 export const ADMIN_PRIVATE_KEY = mnemonic.derivePrivateKey(ADMIN_MNEMONIC.split(' '));

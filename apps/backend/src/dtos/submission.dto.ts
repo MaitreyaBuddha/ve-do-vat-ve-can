@@ -3,18 +3,10 @@ import { IsNotEmpty, IsString, Length } from 'class-validator';
 export class SubmitDto {
   @IsString()
   @IsNotEmpty()
-  public image: string;
-
-  @IsString()
-  @IsNotEmpty()
   @Length(42, 42) // 42 is the length of an Vechain address including the 0x prefix
-  public address: string;
+  public participant: string;
 
   @IsString()
   @IsNotEmpty()
-  public deviceID: string;
-
-  @IsString()
-  @IsNotEmpty()
-  public captcha: string;
+  public amount: string;
 }

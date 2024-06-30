@@ -1,5 +1,10 @@
 import { updateConfig, config } from '@repo/config-contract';
 import { ethers } from 'hardhat';
+/**
+ * Deploys the EcoEarn contract and updates the configuration with the deployed contract address.
+ *
+ * @returns {Promise<void>} A promise that resolves when the deployment is complete.
+ */
 async function deployMugshot() {
     const [owner] = await ethers.getSigners();
 

@@ -26,7 +26,28 @@ paths:
         500:
           description: 'Server Error'
 
- 
+  /submitEarn:
+    # [POST] submitEarn
+    post:
+      tags:
+        - submission
+      summary: Submit Earn
+      parameters:
+        - name: body
+          in: body
+          description: Earn Data
+          required: true
+          schema:
+            $ref: '#/definitions/submitEarn'
+      responses:
+        200:
+          description: 'Submission response'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
 
 # definitions
 definitions:
@@ -47,6 +68,19 @@ definitions:
       deviceID:
         type: string
         description: User's device ID
+
+  submitEarn:
+    type: object
+    required:
+      - participant
+      - amount
+    properties:
+      participant:
+        type: string
+        description: User's wallet address
+      amount:
+        type: string
+        description: Amount to be earned
 
 schemes:
   - https

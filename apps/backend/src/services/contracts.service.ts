@@ -1,6 +1,6 @@
 import { ADMIN_ADDRESS, ADMIN_PRIVATE_KEY, REWARD_AMOUNT } from '@/config';
 import { HttpException } from '@/exceptions/HttpException';
-import { Submission } from '@/interfaces/submission.interface';
+import { Admission, Submission } from '@/interfaces/submission.interface';
 import { thor } from '@/utils/thor';
 import { Service } from 'typedi';
 import { EcoEarnABI } from '@/utils/const';
@@ -9,12 +9,16 @@ import { config } from '@repo/config-contract';
 import { TransactionHandler, clauseBuilder, coder } from '@vechain/sdk-core';
 @Service()
 export class ContractsService {
-  public async registerSubmission(submission: Submission): Promise<void> {
+  public async registerSubmission(submission: Admission): Promise<void> {
+    console.log('What is the deeeeal? ' + ADMIN_ADDRESS)
+    console.log('What is the deeeeal? ' + config.CONTRACT_ADDRESS)
     const clause = clauseBuilder.functionInteraction(
       config.CONTRACT_ADDRESS,
       coder.createInterface(EcoEarnABI).getFunction('registerValidSubmission'),
-      [submission.address, `0x${ethers.parseEther(REWARD_AMOUNT).toString(16)}`],
-    );
+      [
+      submission.participant,
+      `0x${ethers.parseEther(submission.amount).toString(16)}`,
+    ]);
 
     const gasResult = await thor.gas.estimateGas([clause], ADMIN_ADDRESS);
 

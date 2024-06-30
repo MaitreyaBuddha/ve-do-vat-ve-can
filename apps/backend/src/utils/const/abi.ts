@@ -1,3 +1,12 @@
+/**
+ * The ABI (Application Binary Interface) for the EcoEarn contract, which is a smart contract that manages a reward program for participants.
+ * The contract has the following key features:
+ * - Allows participants to register valid submissions and claim their allocated rewards
+ * - Manages the duration of each cycle and the maximum number of submissions per cycle
+ * - Provides functions to update the token address, cycle duration, and maximum submissions per cycle
+ * - Implements access control using roles, allowing the contract admin to grant and revoke roles
+ * - Emits events for various actions, such as claiming rewards, updating the cycle duration, and registering submissions
+ */
 export const EcoEarnABI = [
   {
     inputs: [
