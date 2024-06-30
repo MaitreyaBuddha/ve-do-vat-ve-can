@@ -58,10 +58,14 @@ export const TokenTransactions = () => {
         return <div>Please connect your wallet</div>;
     }
 
+    function shortenAddress(address, chars = 6) {
+        return `${address.substring(0, 4)}...${address.substring(address.length - chars)}`;
+    }
+
     return (
         <Card mt={3} w={"full"}>
             <VStack spacing={4} align="stretch" p={3}>
-                <Heading size="md">Energy Rewards for {wallet.account}</Heading>
+                <Heading size="md">Energy Rewards for {shortenAddress(wallet.account)}</Heading>
                 {isLoading && <Text>Loading transactions...</Text>}
                 {error && <Text color="red.500">{error}</Text>}
                 {!isLoading && !error && transactions.length > 0 && (
@@ -72,7 +76,7 @@ export const TokenTransactions = () => {
                                 <YAxis/>
                                 <Tooltip/>
                                 <Legend/>
-                                <Bar dataKey="amount" name="Amount"
+                                <Bar dataKey="amount" name="Vedge🍆 AI Energy Rewards"
                                      fill={(entry) => entry.type === 'Received' ? '#82ca9d' : '#8884d8'}/>
                             </BarChart>
                         </ResponsiveContainer>
